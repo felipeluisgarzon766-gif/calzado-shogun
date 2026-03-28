@@ -155,7 +155,7 @@ function inicializarCatalogo() {
       cambiarOrden(e.target.value);
     });
   }
-
+  
   aplicarFiltros();
 }
 

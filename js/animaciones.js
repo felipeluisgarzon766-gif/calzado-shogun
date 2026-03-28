@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     obsContador.observe(el);
   });
-
+  
   /* ----------------------------------------
      IMAGEN HERO: efecto parallax suave
   ---------------------------------------- */
