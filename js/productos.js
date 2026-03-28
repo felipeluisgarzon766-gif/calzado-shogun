@@ -246,6 +246,7 @@ function seleccionarTalla(elemento, productoId) {
 
 // Ver detalle (redirige a producto.html)
 function verDetalle(id) {
+  
   window.location.href = `producto.html?id=${id}`;
 }
 

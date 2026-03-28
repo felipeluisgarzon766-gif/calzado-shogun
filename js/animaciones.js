@@ -178,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ----------------------------------------
      IMAGEN HERO: efecto parallax suave
   ---------------------------------------- */
+  
   const heroImagen = document.querySelector('.hero-imagen');
   if (heroImagen) {
     window.addEventListener('scroll', () => {
