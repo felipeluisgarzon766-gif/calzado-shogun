@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catálogo completo de Calzado Shogun. Zapatos para hombre, mujer, niño y deportivo." />
+  <title>Catálogo – Calzado Shogun</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet" href="css/carrito.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* ---- Estilos exclusivos del catálogo ---- */
+
+    .catalogo-hero {
+      background: linear-gradient(135deg, var(--color-primario) 0%, #2d2d5e 100%);
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      color: var(--color-blanco);
+    }
+
+    .catalogo-hero h1 {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .catalogo-hero p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Buscador grande */
+    .buscador-catalogo {
+      display: flex;
+      max-width: 540px;
+      margin: 0 auto;
+      background: var(--color-blanco);
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: var(--sombra-media);
+    }
+
+    .buscador-catalogo input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: none;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.95rem;
+      color: var(--color-texto);
+      outline: none;
+      background: transparent;
+    }
+
+    .buscador-catalogo button {
+      padding: 1rem 1.5rem;
+      background: var(--color-secundario);
+      border: none;
+      color: var(--color-primario);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transicion);
+      font-weight: 700;
+    }
+
+    .buscador-catalogo button:hover {
+      background: var(--color-primario);
+      color: var(--color-blanco);
+    }
+
+    /* Barra de filtros */
+    .filtros-barra {
+      background: var(--color-blanco);
+      border-bottom: 1px solid var(--color-borde);
+      position: sticky;
+      top: 70px;
+      z-index: 100;
+      box-shadow: var(--sombra-suave);
+    }
+
+    .filtros-contenedor {
+      max-width: var(--max-ancho);
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .filtros-categorias {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filtro-btn {
+      padding: 0.5rem 1.25rem;
+      border: 2px solid var(--color-borde);
+      border-radius: 50px;
+      background: none;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transicion);
+      color: var(--color-texto);
+      white-space: nowrap;
+    }
+
+    .filtro-btn:hover {
+      border-color: var(--color-secundario);
+      color: var(--color-secundario);
+    }
+
+    .filtro-btn.activo {
+      background: var(--color-primario);
+      border-color: var(--color-primario);
+      color: var(--color-blanco);
+    }
+
+    /* Selector de orden */
+    .orden-select {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .orden-select label {
+      font-size: 0.82rem;
+      color: var(--color-texto-suave);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    #selectOrden {
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--color-borde);
+      border-radius: 8px;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.85rem;
+      color: var(--color-texto);
+      background: var(--color-blanco);
+      cursor: pointer;
+      outline: none;
+      transition: var(--transicion);
+    }
+
+    #selectOrden:focus {
+      border-color: var(--color-secundario);
+    }
+
+    /* Área principal del catálogo */
+    .catalogo-principal {
+      padding: 2.5rem 0 5rem;
+      background: var(--color-fondo);
+    }
+
+    .catalogo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    #contadorResultados {
+      font-size: 0.88rem;
+      color: var(--color-texto-suave);
+      font-weight: 500;
+    }
+
+    .btn-limpiar {
+      background: none;
+      border: 1px solid var(--color-borde);
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-family: var(--fuente-cuerpo);
+      cursor: pointer;
+      color: var(--color-texto-suave);
+      transition: var(--transicion);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-limpiar:hover {
+      border-color: var(--color-acento);
+      color: var(--color-acento);
+    }
+
+    /* Sin resultados */
+    .sin-resultados {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--color-texto-suave);
+    }
+
+    .sin-resultados i {
+      font-size: 4rem;
+      opacity: 0.15;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .sin-resultados p {
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Responsive filtros */
+    @media (max-width: 768px) {
+      .filtros-contenedor {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .filtros-categorias {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.25rem;
+        scrollbar-width: none;
+      }
+
+      .filtros-categorias::-webkit-scrollbar { display: none; }
+
+      .catalogo-hero { padding: 3rem 1rem 2.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Barra de anuncio -->
+  <div class="barra-anuncio">
+    <p>🚚 Envíos a toda Colombia &nbsp;|&nbsp; 📞 Atención por WhatsApp &nbsp;|&nbsp; 🔒 Compra 100% segura</p>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header-contenedor">
+      <div class="logo">
+        <a href="index.html">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </a>
+      </div>
+
+      <nav class="nav-principal" id="navPrincipal">
+        <ul class="nav-lista">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="catalogo.html" class="nav-link activo">Catálogo</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link">Categorías <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+              <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+              <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+              <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+              <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+            </ul>
+          </li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-acciones">
+        <div class="buscador-mini" id="buscadorMini">
+          <input type="text" placeholder="Buscar..." id="inputBusqueda" />
+          <button class="btn-buscar" onclick="buscar()">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <button class="btn-icono" id="btnBuscador"><i class="fas fa-search"></i></button>
+        <button class="btn-icono btn-carrito" id="btnCarrito">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="carrito-contador" id="carritoContador">0</span>
+        </button>
+        <button class="btn-hamburguesa" id="btnHamburguesa">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== CARRITO PANEL ========== -->
+  <aside class="carrito-panel" id="carritoPanel">
+    <div class="carrito-panel-header">
+      <h3><i class="fas fa-shopping-bag"></i> Mi Carrito</h3>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="carrito-panel-cuerpo" id="carritoCuerpo">
+      <div class="carrito-vacio" id="carritoVacio">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Tu carrito está vacío</p>
+        <a href="catalogo.html" class="btn-primario">Ver productos</a>
+      </div>
+      <ul class="carrito-items" id="carritoItems"></ul>
+    </div>
+    <div class="carrito-panel-footer" id="carritoFooter" style="display:none;">
+      <div class="carrito-total">
+        <span>Total:</span>
+        <strong id="carritoTotal">$0 COP</strong>
+      </div>
+      <button class="btn-whatsapp-carrito" id="btnPedidoWhatsapp">
+        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+      </button>
+      <p class="carrito-nota">* Te contactaremos para coordinar el pago y envío</p>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ========== HERO CATÁLOGO ========== -->
+  <section class="catalogo-hero">
+    <h1>Nuestro Catálogo</h1>
+    <p>Encuentra el par perfecto entre todos nuestros modelos</p>
+    <div class="buscador-catalogo">
+      <input
+        type="text"
+        id="inputCatalogo"
+        placeholder="Buscar por nombre, categoría o descripción..."
+        autocomplete="off"
+      />
+      <button onclick="aplicarFiltros()">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========== BARRA DE FILTROS ========== -->
+  <div class="filtros-barra">
+    <div class="filtros-contenedor">
+
+      <!-- Botones de categoría -->
+      <div class="filtros-categorias">
+        <button class="filtro-btn activo" data-categoria="todos"
+                onclick="cambiarCategoria('todos')">
+          Todos
+        </button>
+        <button class="filtro-btn" data-categoria="hombre"
+                onclick="cambiarCategoria('hombre')">
+          <i class="fas fa-male"></i> Hombre
+        </button>
+        <button class="filtro-btn" data-categoria="mujer"
+                onclick="cambiarCategoria('mujer')">
+          <i class="fas fa-female"></i> Mujer
+        </button>
+        <button class="filtro-btn" data-categoria="unisex"
+                onclick="cambiarCategoria('unisex')">
+          <i class="fas fa-users"></i> Unisex
+        </button>
+        <button class="filtro-btn" data-categoria="nino"
+                onclick="cambiarCategoria('nino')">
+          <i class="fas fa-child"></i> Niño
+        </button>
+        <button class="filtro-btn" data-categoria="deportivo"
+                onclick="cambiarCategoria('deportivo')">
+          <i class="fas fa-running"></i> Deportivo
+        </button>
+      </div>
+
+      <!-- Selector de orden -->
+      <div class="orden-select">
+        <label for="selectOrden">Ordenar:</label>
+        <select id="selectOrden">
+          <option value="default">Relevancia</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="nombre-asc">Nombre A–Z</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== LISTADO DE PRODUCTOS ========== -->
+  <section class="catalogo-principal">
+    <div class="contenedor">
+
+      <div class="catalogo-header">
+        <span id="contadorResultados">Cargando productos...</span>
+        <button class="btn-limpiar" onclick="limpiarFiltros()">
+          <i class="fas fa-times"></i> Limpiar filtros
+        </button>
+      </div>
+
+      <!-- Los productos se renderizan aquí con JavaScript -->
+      <div class="productos-grid" id="listadoProductos"></div>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="contenedor footer-grid">
+      <div class="footer-marca">
+        <div class="logo footer-logo">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </div>
+        <p>Tu tienda de confianza para calzado de calidad en Colombia.</p>
+        <div class="footer-redes">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+          <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+          <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+          <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+          <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="legal.html#privacidad">Política de Privacidad</a></li>
+          <li><a href="legal.html#terminos">Términos y Condiciones</a></li>
+          <li><a href="legal.html#datos">Tratamiento de Datos</a></li>
+          <li><a href="legal.html#facturacion">Facturación Electrónica</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Calzado Shogun. Todos los derechos reservados.</p>
+      <p>Hecho con <i class="fas fa-heart"></i> en Colombia 🇨🇴</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573000000000?text=Hola%2C%20me%20interesa%20un%20producto"
+     class="whatsapp-flotante" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/filtros.js"></script>
+  <script src="js/animaciones.js"></script>
+
+</body>
+</html>

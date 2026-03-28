@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Política de privacidad, términos y condiciones, tratamiento de datos y facturación electrónica de Calzado Shogun." />
+  <title>Legal – Calzado Shogun</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet" href="css/carrito.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* Hero legal */
+    .legal-hero {
+      background: linear-gradient(135deg, var(--color-primario) 0%, #2d2d5e 100%);
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      color: var(--color-blanco);
+    }
+
+    .legal-hero h1 {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .legal-hero p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Navegación interna */
+    .legal-nav-wrap {
+      background: var(--color-blanco);
+      border-bottom: 1px solid var(--color-borde);
+      position: sticky;
+      top: 70px;
+      z-index: 100;
+      box-shadow: var(--sombra-suave);
+    }
+
+    .legal-nav {
+      max-width: var(--max-ancho);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0.25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .legal-nav::-webkit-scrollbar { display: none; }
+
+    .legal-nav-btn {
+      padding: 1rem 1.25rem;
+      border: none;
+      background: none;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--color-texto-suave);
+      border-bottom: 3px solid transparent;
+      transition: var(--transicion);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legal-nav-btn:hover {
+      color: var(--color-primario);
+    }
+
+    .legal-nav-btn.activo {
+      color: var(--color-secundario);
+      border-bottom-color: var(--color-secundario);
+    }
+
+    /* Contenido legal */
+    .legal-contenido {
+      padding: 4rem 0 6rem;
+      background: var(--color-fondo);
+    }
+
+    .legal-seccion {
+      display: none;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .legal-seccion.activo {
+      display: block;
+      animation: fadeInLegal 0.4s ease;
+    }
+
+    @keyframes fadeInLegal {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .legal-card {
+      background: var(--color-blanco);
+      border-radius: var(--radio-grande);
+      padding: 3rem;
+      box-shadow: var(--sombra-suave);
+      border: 1px solid var(--color-borde);
+    }
+
+    .legal-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--color-fondo);
+    }
+
+    .legal-card-icono {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--color-primario), #2d2d5e);
+      border-radius: var(--radio);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--color-secundario);
+      flex-shrink: 0;
+    }
+
+    .legal-card-header div h2 {
+      font-family: var(--fuente-titulo);
+      font-size: 1.6rem;
+      color: var(--color-primario);
+    }
+
+    .legal-card-header div span {
+      font-size: 0.8rem;
+      color: var(--color-texto-suave);
+    }
+
+    /* Tipografía del contenido legal */
+    .legal-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-primario);
+      margin: 2rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .legal-card h3::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1em;
+      background: var(--color-secundario);
+      border-radius: 2px;
+    }
+
+    .legal-card p {
+      color: var(--color-texto-suave);
+      line-height: 1.85;
+      font-size: 0.93rem;
+      margin-bottom: 1rem;
+    }
+
+    .legal-card ul {
+      list-style: none;
+      margin: 0.75rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .legal-card ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      color: var(--color-texto-suave);
+      line-height: 1.6;
+    }
+
+    .legal-card ul li::before {
+      content: '›';
+      color: var(--color-secundario);
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: -1px;
+    }
+
+    .legal-destacado {
+      background: rgba(200, 169, 110, 0.08);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      border-radius: var(--radio);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--color-texto);
+      line-height: 1.7;
+    }
+
+    .legal-destacado i {
+      color: var(--color-secundario);
+      margin-right: 0.4rem;
+    }
+
+    .legal-actualizacion {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--color-fondo);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      color: var(--color-texto-suave);
+      margin-top: 2rem;
+      border: 1px solid var(--color-borde);
+    }
+
+    .legal-contacto-box {
+      background: var(--color-primario);
+      color: var(--color-blanco);
+      border-radius: var(--radio);
+      padding: 1.5rem 2rem;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .legal-contacto-box i {
+      font-size: 2rem;
+      color: var(--color-secundario);
+    }
+
+    .legal-contacto-box div h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .legal-contacto-box div p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .legal-card { padding: 1.75rem 1.25rem; }
+      .legal-card-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Barra anuncio -->
+  <div class="barra-anuncio">
+    <p>🚚 Envíos a toda Colombia &nbsp;|&nbsp; 📞 Atención por WhatsApp &nbsp;|&nbsp; 🔒 Compra 100% segura</p>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header-contenedor">
+      <div class="logo">
+        <a href="index.html">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </a>
+      </div>
+      <nav class="nav-principal" id="navPrincipal">
+        <ul class="nav-lista">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link">Categorías <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+              <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+              <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+              <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+              <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+            </ul>
+          </li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-acciones">
+        <div class="buscador-mini" id="buscadorMini">
+          <input type="text" placeholder="Buscar..." id="inputBusqueda" />
+          <button class="btn-buscar" onclick="buscar()"><i class="fas fa-search"></i></button>
+        </div>
+        <button class="btn-icono" id="btnBuscador"><i class="fas fa-search"></i></button>
+        <button class="btn-icono btn-carrito" id="btnCarrito">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="carrito-contador" id="carritoContador">0</span>
+        </button>
+        <button class="btn-hamburguesa" id="btnHamburguesa">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Carrito panel -->
+  <aside class="carrito-panel" id="carritoPanel">
+    <div class="carrito-panel-header">
+      <h3><i class="fas fa-shopping-bag"></i> Mi Carrito</h3>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="carrito-panel-cuerpo" id="carritoCuerpo">
+      <div class="carrito-vacio" id="carritoVacio">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Tu carrito está vacío</p>
+        <a href="catalogo.html" class="btn-primario">Ver productos</a>
+      </div>
+      <ul class="carrito-items" id="carritoItems"></ul>
+    </div>
+    <div class="carrito-panel-footer" id="carritoFooter" style="display:none;">
+      <div class="carrito-total">
+        <span>Total:</span>
+        <strong id="carritoTotal">$0 COP</strong>
+      </div>
+      <button class="btn-whatsapp-carrito" id="btnPedidoWhatsapp">
+        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+      </button>
+      <p class="carrito-nota">* Te contactaremos para coordinar el pago y envío</p>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ========== HERO ========== -->
+  <section class="legal-hero">
+    <span class="seccion-etiqueta" style="color:var(--color-secundario);">Transparencia y confianza</span>
+    <h1>Información Legal</h1>
+    <p>Conoce nuestras políticas, términos y el compromiso que tenemos contigo como cliente.</p>
+  </section>
+
+  <!-- ========== NAVEGACIÓN LEGAL ========== -->
+  <div class="legal-nav-wrap">
+    <nav class="legal-nav" id="legalNav">
+      <button class="legal-nav-btn activo" data-seccion="privacidad" onclick="mostrarSeccion('privacidad')">
+        <i class="fas fa-shield-alt"></i> Política de Privacidad
+      </button>
+      <button class="legal-nav-btn" data-seccion="terminos" onclick="mostrarSeccion('terminos')">
+        <i class="fas fa-file-contract"></i> Términos y Condiciones
+      </button>
+      <button class="legal-nav-btn" data-seccion="datos" onclick="mostrarSeccion('datos')">
+        <i class="fas fa-database"></i> Tratamiento de Datos
+      </button>
+      <button class="legal-nav-btn" data-seccion="facturacion" onclick="mostrarSeccion('facturacion')">
+        <i class="fas fa-file-invoice"></i> Facturación Electrónica
+      </button>
+    </nav>
+  </div>
+
+  <!-- ========== CONTENIDO LEGAL ========== -->
+  <main class="legal-contenido">
+
+    <!-- PRIVACIDAD -->
+    <section class="legal-seccion activo" id="seccion-privacidad">
+      <div class="legal-card">
+        <div class="legal-card-header">
+          <div class="legal-card-icono"><i class="fas fa-shield-alt"></i></div>
+          <div>
+            <h2>Política de Privacidad</h2>
+            <span>Calzado Shogun – Colombia</span>
+          </div>
+        </div>
+
+        <div class="legal-destacado">
+          <i class="fas fa-info-circle"></i>
+          En Calzado Shogun respetamos tu privacidad. Esta política explica cómo recopilamos, usamos y protegemos tu información personal, de acuerdo con la legislación colombiana vigente.
+        </div>
+
+        <h3>1. Responsable del tratamiento</h3>
+        <p>El responsable del tratamiento de los datos personales es <strong>Calzado Shogun</strong>, empresa con domicilio en Colombia. Para cualquier consulta relacionada con esta política puedes contactarnos en: <strong>contacto@calzadoshogun.com</strong></p>
+
+        <h3>2. Información que recopilamos</h3>
+        <p>Cuando interactúas con nuestra tienda o nos contactas por WhatsApp, podemos recopilar la siguiente información:</p>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Número de teléfono y/o WhatsApp</li>
+          <li>Dirección de entrega (ciudad, barrio, dirección)</li>
+          <li>Correo electrónico (cuando aplique)</li>
+          <li>Historial de pedidos realizados</li>
+        </ul>
+
+        <h3>3. Finalidad del uso de datos</h3>
+        <p>La información recopilada es utilizada exclusivamente para:</p>
+        <ul>
+          <li>Procesar y coordinar tus pedidos de calzado</li>
+          <li>Contactarte para confirmar disponibilidad y datos de envío</li>
+          <li>Emitir la factura electrónica correspondiente</li>
+          <li>Resolver dudas, quejas o solicitudes de cambio</li>
+          <li>Enviarte información de nuevos productos (solo si das tu consentimiento)</li>
+        </ul>
+
+        <h3>4. Base legal del tratamiento</h3>
+        <p>El tratamiento de tus datos personales se realiza bajo el consentimiento libre, previo, expreso e informado del titular, conforme a lo establecido en la <strong>Ley 1581 de 2012</strong> y el <strong>Decreto 1377 de 2013</strong> de la República de Colombia.</p>
+
+        <h3>5. Compartición de datos</h3>
+        <p>Calzado Shogun no vende, arrienda ni comparte tu información personal con terceros para fines comerciales. Únicamente podremos compartir datos con:</p>
+        <ul>
+          <li>Empresas de mensajería y transporte para gestionar el envío de tus pedidos</li>
+          <li>Autoridades competentes cuando la ley lo exija</li>
+        </ul>
+
+        <h3>6. Tus derechos como titular</h3>
+        <p>Conforme a la ley colombiana, tienes derecho a:</p>
+        <ul>
+          <li>Conocer, actualizar y rectificar tus datos personales</li>
+          <li>Solicitar la eliminación de tus datos cuando no sean necesarios</li>
+          <li>Revocar el consentimiento otorgado</li>
+          <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC)</li>
+        </ul>
+
+        <h3>7. Seguridad de la información</h3>
+        <p>Implementamos medidas técnicas y organizativas razonables para proteger tu información personal contra accesos no autorizados, pérdida o divulgación indebida.</p>
+
+        <h3>8. Vigencia de la política</h3>
+        <p>Esta política entra en vigor a partir de su publicación y podrá ser actualizada cuando sea necesario. Los cambios serán comunicados a través de nuestros canales oficiales.</p>
+
+        <div class="legal-contacto-box">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <h4>¿Dudas sobre tu privacidad?</h4>
+            <p>Escríbenos a contacto@calzadoshogun.com o por WhatsApp</p>
+          </div>
+        </div>
+
+        <span class="legal-actualizacion">
+          <i class="fas fa-calendar-alt"></i> Última actualización: enero de 2025
+        </span>
+      </div>
+    </section>
+
+    <!-- TÉRMINOS Y CONDICIONES -->
+    <section class="legal-seccion" id="seccion-terminos">
+      <div class="legal-card">
+        <div class="legal-card-header">
+          <div class="legal-card-icono"><i class="fas fa-file-contract"></i></div>
+          <div>
+            <h2>Términos y Condiciones</h2>
+            <span>Calzado Shogun – Colombia</span>
+          </div>
+        </div>
+
+        <div class="legal-destacado">
+          <i class="fas fa-info-circle"></i>
+          Al realizar una compra o usar nuestra tienda en línea, aceptas los presentes términos y condiciones. Te recomendamos leerlos detenidamente antes de realizar tu pedido.
+        </div>
+
+        <h3>1. Identificación del vendedor</h3>
+        <p><strong>Calzado Shogun</strong> es una empresa comercial con domicilio en Colombia, dedicada a la venta de calzado para toda la familia a través de canales digitales.</p>
+
+        <h3>2. Productos y disponibilidad</h3>
+        <p>Todos los productos mostrados en nuestra tienda están sujetos a disponibilidad de inventario. Nos comprometemos a informarte oportunamente si un producto no está disponible al momento de tu pedido.</p>
+        <ul>
+          <li>Las imágenes de los productos son referenciales y pueden tener leves variaciones de color según el dispositivo</li>
+          <li>Las tallas se rigen por la numeración estándar colombiana</li>
+          <li>Los precios están expresados en pesos colombianos (COP) e incluyen IVA cuando aplique</li>
+        </ul>
+
+        <h3>3. Proceso de compra</h3>
+        <p>El proceso de compra en Calzado Shogun funciona de la siguiente manera:</p>
+        <ul>
+          <li>El cliente selecciona el producto, talla y color de su preferencia</li>
+          <li>Realiza su pedido a través del carrito de compras o por WhatsApp</li>
+          <li>Nuestro equipo confirma la disponibilidad y los datos de envío</li>
+          <li>El cliente realiza el pago mediante los métodos disponibles</li>
+          <li>Se confirma el pedido y se procede con el envío</li>
+        </ul>
+
+        <h3>4. Precios y pagos</h3>
+        <p>Los precios publicados son los vigentes al momento de la compra. Aceptamos los siguientes métodos de pago:</p>
+        <ul>
+          <li>Nequi (transferencia inmediata)</li>
+          <li>Bancolombia (transferencia bancaria)</li>
+          <li>PayPal (pagos internacionales)</li>
+          <li>Coordinación directa por WhatsApp</li>
+        </ul>
+
+        <h3>5. Envíos y tiempos de entrega</h3>
+        <p>Realizamos envíos a todo el territorio colombiano. Los tiempos estimados de entrega son:</p>
+        <ul>
+          <li>Ciudades principales: 2 a 4 días hábiles</li>
+          <li>Municipios intermedios: 4 a 7 días hábiles</li>
+          <li>Zonas apartadas: sujeto a disponibilidad del transportador</li>
+        </ul>
+        <p>Los costos de envío serán informados al momento de confirmar el pedido y dependen del destino.</p>
+
+        <h3>6. Política de cambios</h3>
+        <p>Aceptamos cambios de productos en los siguientes casos:</p>
+        <ul>
+          <li>El producto llegó en mal estado o con defecto de fábrica</li>
+          <li>Se envió un producto diferente al solicitado</li>
+          <li>La talla no corresponde a la solicitada</li>
+        </ul>
+        <p>Para gestionar un cambio, el cliente debe contactarnos dentro de los <strong>5 días hábiles</strong> siguientes a la recepción del producto, con fotografías del inconveniente.</p>
+
+        <h3>7. Limitación de responsabilidad</h3>
+        <p>Calzado Shogun no será responsable por demoras en la entrega causadas por factores externos como huelgas, desastres naturales, fallas en servicios de transporte o situaciones de orden público.</p>
+
+        <h3>8. Modificaciones</h3>
+        <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Las modificaciones entrarán en vigor desde su publicación en el sitio web.</p>
+
+        <span class="legal-actualizacion">
+          <i class="fas fa-calendar-alt"></i> Última actualización: enero de 2025
+        </span>
+      </div>
+    </section>
+
+    <!-- TRATAMIENTO DE DATOS -->
+    <section class="legal-seccion" id="seccion-datos">
+      <div class="legal-card">
+        <div class="legal-card-header">
+          <div class="legal-card-icono"><i class="fas fa-database"></i></div>
+          <div>
+            <h2>Tratamiento de Datos Personales</h2>
+            <span>Ley 1581 de 2012 – Colombia</span>
+          </div>
+        </div>
+
+        <div class="legal-destacado">
+          <i class="fas fa-balance-scale"></i>
+          Este aviso de tratamiento de datos personales se emite en cumplimiento de la <strong>Ley Estatutaria 1581 de 2012</strong> y el <strong>Decreto Reglamentario 1377 de 2013</strong> de la República de Colombia, sobre Protección de Datos Personales.
+        </div>
+
+        <h3>1. Responsable del tratamiento</h3>
+        <p><strong>Razón social:</strong> Calzado Shogun</p>
+        <p><strong>Domicilio:</strong> Colombia</p>
+        <p><strong>Correo de contacto:</strong> contacto@calzadoshogun.com</p>
+        <p><strong>Canal de atención:</strong> WhatsApp +57 300 000 0000</p>
+
+        <h3>2. Datos que tratamos</h3>
+        <ul>
+          <li>Datos de identificación: nombre completo</li>
+          <li>Datos de contacto: teléfono, WhatsApp, correo electrónico</li>
+          <li>Datos de ubicación: dirección de entrega, ciudad, departamento</li>
+          <li>Datos transaccionales: historial de pedidos y compras</li>
+        </ul>
+
+        <h3>3. Finalidades del tratamiento</h3>
+        <ul>
+          <li>Gestión y procesamiento de pedidos de productos</li>
+          <li>Coordinación de envíos y entregas</li>
+          <li>Emisión de factura electrónica según normas DIAN</li>
+          <li>Atención al cliente y gestión de cambios</li>
+          <li>Envío de información comercial (con autorización expresa del titular)</li>
+          <li>Cumplimiento de obligaciones legales y fiscales</li>
+        </ul>
+
+        <h3>4. Derechos del titular</h3>
+        <p>Como titular de tus datos personales, tienes los siguientes derechos:</p>
+        <ul>
+          <li><strong>Acceso:</strong> conocer qué datos tuyos tenemos almacenados</li>
+          <li><strong>Rectificación:</strong> corregir datos inexactos o desactualizados</li>
+          <li><strong>Supresión:</strong> solicitar la eliminación de tus datos</li>
+          <li><strong>Revocación:</strong> retirar el consentimiento otorgado</li>
+          <li><strong>Queja:</strong> presentar reclamo ante la Superintendencia de Industria y Comercio</li>
+        </ul>
+
+        <h3>5. Cómo ejercer tus derechos</h3>
+        <p>Para ejercer cualquiera de tus derechos puedes contactarnos por alguno de los siguientes canales:</p>
+        <ul>
+          <li>Correo electrónico: contacto@calzadoshogun.com</li>
+          <li>WhatsApp: +57 300 000 0000</li>
+        </ul>
+        <p>Daremos respuesta a tu solicitud dentro de los plazos establecidos por la ley colombiana (máximo <strong>10 días hábiles</strong> para consultas y <strong>15 días hábiles</strong> para reclamos).</p>
+
+        <h3>6. Transferencia de datos</h3>
+        <p>Calzado Shogun no realiza transferencia internacional de datos personales. La información únicamente se comparte con empresas de transporte nacionales para gestionar los envíos, quienes también están sujetas a la legislación colombiana de protección de datos.</p>
+
+        <h3>7. Vigencia</h3>
+        <p>Los datos personales serán conservados durante el tiempo que sea necesario para cumplir con la finalidad del tratamiento y las obligaciones legales aplicables, o hasta que el titular solicite su supresión.</p>
+
+        <h3>8. Autorización</h3>
+        <p>Al proporcionar tus datos personales a Calzado Shogun, ya sea para realizar un pedido, contactarnos por WhatsApp o cualquier otro medio, estás otorgando tu autorización libre, previa, expresa e informada para el tratamiento de los mismos conforme a esta política.</p>
+
+        <div class="legal-contacto-box">
+          <i class="fas fa-user-shield"></i>
+          <div>
+            <h4>Oficial de Protección de Datos</h4>
+            <p>contacto@calzadoshogun.com | WhatsApp +57 300 000 0000</p>
+          </div>
+        </div>
+
+        <span class="legal-actualizacion">
+          <i class="fas fa-calendar-alt"></i> Última actualización: enero de 2025
+        </span>
+      </div>
+    </section>
+
+    <!-- FACTURACIÓN ELECTRÓNICA -->
+    <section class="legal-seccion" id="seccion-facturacion">
+      <div class="legal-card">
+        <div class="legal-card-header">
+          <div class="legal-card-icono"><i class="fas fa-file-invoice"></i></div>
+          <div>
+            <h2>Facturación Electrónica</h2>
+            <span>Normativa DIAN – Colombia</span>
+          </div>
+        </div>
+
+        <div class="legal-destacado">
+          <i class="fas fa-certificate"></i>
+          Calzado Shogun cumple con la obligación de facturación electrónica establecida por la <strong>DIAN (Dirección de Impuestos y Aduanas Nacionales)</strong> de Colombia, conforme a la <strong>Resolución 000042 de 2020</strong> y sus modificaciones.
+        </div>
+
+        <h3>1. ¿Qué es la factura electrónica?</h3>
+        <p>La factura electrónica es el documento equivalente a la factura de venta tradicional, pero generado, transmitido y conservado en formato digital. En Colombia, su uso es obligatorio para los comerciantes y tiene plena validez legal y fiscal ante la DIAN.</p>
+
+        <h3>2. ¿Cuándo recibes tu factura?</h3>
+        <p>Emitimos la factura electrónica en el momento en que se confirma y procesa tu pedido. La recibirás:</p>
+        <ul>
+          <li>Por correo electrónico (si nos lo proporcionas)</li>
+          <li>Por WhatsApp en formato PDF o XML validado por DIAN</li>
+          <li>A solicitud del cliente en cualquier momento posterior a la compra</li>
+        </ul>
+
+        <h3>3. Información que contiene tu factura</h3>
+        <ul>
+          <li>Nombre o razón social del vendedor (Calzado Shogun)</li>
+          <li>NIT o identificación tributaria del vendedor</li>
+          <li>Nombre e identificación del comprador (cuando aplique)</li>
+          <li>Descripción detallada del producto adquirido</li>
+          <li>Valor unitario, cantidad y valor total en COP</li>
+          <li>IVA discriminado cuando aplique</li>
+          <li>Fecha y número único de factura</li>
+          <li>CUFE (Código Único de Factura Electrónica) validado por DIAN</li>
+        </ul>
+
+        <h3>4. Validez tributaria</h3>
+        <p>Nuestra factura electrónica es un documento con plena validez tributaria, lo que significa que puedes utilizarla para:</p>
+        <ul>
+          <li>Soportar tus gastos ante la DIAN si eres contribuyente</li>
+          <li>Reclamar garantías o hacer valer tus derechos como consumidor</li>
+          <li>Presentar reclamaciones ante entidades de control</li>
+        </ul>
+
+        <h3>5. Conservación del documento</h3>
+        <p>Conforme a la normativa colombiana, Calzado Shogun conserva las facturas electrónicas por un mínimo de <strong>5 años</strong>. Si necesitas una copia de tu factura, puedes solicitarla en cualquier momento contactándonos por nuestros canales de atención.</p>
+
+        <h3>6. Derechos del consumidor</h3>
+        <p>De acuerdo con la <strong>Ley 1480 de 2011 (Estatuto del Consumidor)</strong> de Colombia, tienes derecho a recibir factura por toda compra realizada. Si no recibes tu factura, tienes derecho a exigirla.</p>
+
+        <h3>7. Régimen tributario</h3>
+        <p>Calzado Shogun opera conforme al régimen tributario colombiano aplicable a su actividad comercial. Para consultas específicas sobre aspectos tributarios de tu compra, puedes contactarnos directamente.</p>
+
+        <div class="legal-contacto-box">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <div>
+            <h4>¿Necesitas tu factura electrónica?</h4>
+            <p>Escríbenos y te la enviamos de inmediato: contacto@calzadoshogun.com</p>
+          </div>
+        </div>
+
+        <span class="legal-actualizacion">
+          <i class="fas fa-calendar-alt"></i> Última actualización: enero de 2025
+        </span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="contenedor footer-grid">
+      <div class="footer-marca">
+        <div class="logo footer-logo">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </div>
+        <p>Tu tienda de confianza para calzado de calidad en Colombia.</p>
+        <div class="footer-redes">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+          <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+          <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+          <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+          <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="legal.html#privacidad">Política de Privacidad</a></li>
+          <li><a href="legal.html#terminos">Términos y Condiciones</a></li>
+          <li><a href="legal.html#datos">Tratamiento de Datos</a></li>
+          <li><a href="legal.html#facturacion">Facturación Electrónica</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Calzado Shogun. Todos los derechos reservados.</p>
+      <p>Hecho con <i class="fas fa-heart"></i> en Colombia 🇨🇴</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573000000000" class="whatsapp-flotante" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/filtros.js"></script>
+  <script src="js/animaciones.js"></script>
+
+  <script>
+    // Navegación entre secciones legales
+    function mostrarSeccion(id) {
+      // Ocultar todas
+      document.querySelectorAll('.legal-seccion').forEach(s => s.classList.remove('activo'));
+      document.querySelectorAll('.legal-nav-btn').forEach(b => b.classList.remove('activo'));
+
+      // Mostrar la seleccionada
+      const seccion = document.getElementById('seccion-' + id);
+      const btn     = document.querySelector(`[data-seccion="${id}"]`);
+      if (seccion) seccion.classList.add('activo');
+      if (btn)     btn.classList.add('activo');
+
+      // Scroll al contenido
+      document.querySelector('.legal-contenido').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Leer hash de URL para abrir sección directa
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      const secciones = ['privacidad', 'terminos', 'datos', 'facturacion'];
+      if (hash && secciones.includes(hash)) {
+        mostrarSeccion(hash);
+      }
+    });
+  </script>
+
+</body>
+</html>

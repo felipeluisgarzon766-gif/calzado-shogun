@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Producto – Calzado Shogun</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet" href="css/carrito.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* Migas de pan */
+    .breadcrumb {
+      background: var(--color-blanco);
+      border-bottom: 1px solid var(--color-borde);
+      padding: 0.85rem 0;
+    }
+
+    .breadcrumb-lista {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.83rem;
+      color: var(--color-texto-suave);
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb-lista a {
+      color: var(--color-texto-suave);
+      transition: var(--transicion);
+    }
+
+    .breadcrumb-lista a:hover { color: var(--color-secundario); }
+
+    .breadcrumb-lista i {
+      font-size: 0.65rem;
+      opacity: 0.5;
+    }
+
+    .breadcrumb-lista span {
+      color: var(--color-primario);
+      font-weight: 600;
+    }
+
+    /* Layout principal del producto */
+    .producto-detalle {
+      padding: 3rem 0 5rem;
+      background: var(--color-fondo);
+    }
+
+    .producto-detalle-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Galería de imágenes */
+    .galeria {
+      position: sticky;
+      top: 90px;
+    }
+
+    .galeria-principal {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--color-blanco);
+      border-radius: var(--radio-grande);
+      overflow: hidden;
+      border: 1px solid var(--color-borde);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .galeria-principal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .galeria-principal:hover img {
+      transform: scale(1.04);
+    }
+
+    .galeria-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: rgba(26,26,46,0.15);
+      font-size: 1rem;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--color-primario), #2d2d5e);
+    }
+
+    .galeria-placeholder i { font-size: 6rem; }
+
+    .galeria-badge-detalle {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--color-acento);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+    }
+
+    /* Miniaturas */
+    .galeria-miniaturas {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+    }
+
+    .miniatura {
+      aspect-ratio: 1/1;
+      border-radius: var(--radio);
+      overflow: hidden;
+      border: 2px solid var(--color-borde);
+      cursor: pointer;
+      transition: var(--transicion);
+      background: var(--color-blanco);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(26,26,46,0.15);
+      font-size: 1.4rem;
+    }
+
+    .miniatura:hover,
+    .miniatura.activa {
+      border-color: var(--color-secundario);
+      transform: scale(1.04);
+    }
+
+    .miniatura img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Información del producto */
+    .producto-info-detalle {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .producto-info-top {
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-borde);
+    }
+
+    .producto-categoria-badge {
+      display: inline-block;
+      background: rgba(200,169,110,0.12);
+      color: var(--color-secundario);
+      padding: 0.3rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .producto-nombre-detalle {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      color: var(--color-primario);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .producto-precio-detalle {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .precio-actual {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-acento);
+      font-family: var(--fuente-titulo);
+    }
+
+    .precio-tachado {
+      font-size: 1.1rem;
+      color: var(--color-texto-suave);
+      text-decoration: line-through;
+    }
+
+    .precio-descuento {
+      background: var(--color-acento);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+
+    /* Selector de colores */
+    .selector-titulo {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-primario);
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .colores-detalle {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .color-opcion {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 3px solid var(--color-borde);
+      cursor: pointer;
+      transition: var(--transicion);
+      position: relative;
+    }
+
+    .color-opcion:hover,
+    .color-opcion.activo {
+      border-color: var(--color-primario);
+      transform: scale(1.15);
+    }
+
+    .color-opcion.activo::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    /* Selector de tallas */
+    .tallas-detalle {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .talla-opcion {
+      min-width: 48px;
+      height: 44px;
+      padding: 0 0.75rem;
+      border: 2px solid var(--color-borde);
+      border-radius: 8px;
+      background: var(--color-blanco);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transicion);
+      font-family: var(--fuente-cuerpo);
+      color: var(--color-texto);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .talla-opcion:hover {
+      border-color: var(--color-secundario);
+      color: var(--color-secundario);
+    }
+
+    .talla-opcion.activo {
+      background: var(--color-primario);
+      border-color: var(--color-primario);
+      color: var(--color-blanco);
+    }
+
+    /* Cantidad */
+    .cantidad-detalle {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-cantidad-detalle {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--color-borde);
+      border-radius: 8px;
+      background: var(--color-blanco);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transicion);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-texto);
+    }
+
+    .btn-cantidad-detalle:hover {
+      background: var(--color-primario);
+      color: white;
+      border-color: var(--color-primario);
+    }
+
+    #cantidadProducto {
+      font-size: 1.1rem;
+      font-weight: 700;
+      min-width: 30px;
+      text-align: center;
+      color: var(--color-primario);
+    }
+
+    /* Botones de acción */
+    .acciones-detalle {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-carrito-detalle {
+      width: 100%;
+      padding: 1.1rem;
+      background: var(--color-primario);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transicion);
+      font-family: var(--fuente-cuerpo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .btn-carrito-detalle:hover {
+      background: var(--color-secundario);
+      transform: translateY(-2px);
+      box-shadow: var(--sombra-media);
+    }
+
+    .btn-whatsapp-detalle {
+      width: 100%;
+      padding: 1rem;
+      background: #25d366;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transicion);
+      font-family: var(--fuente-cuerpo);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .btn-whatsapp-detalle:hover {
+      background: #1da851;
+      transform: translateY(-2px);
+    }
+
+    /* Beneficios */
+    .beneficios-detalle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      background: var(--color-fondo);
+      border-radius: var(--radio);
+      border: 1px solid var(--color-borde);
+    }
+
+    .beneficio-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--color-texto-suave);
+      font-weight: 500;
+    }
+
+    .beneficio-item i {
+      color: var(--color-secundario);
+      font-size: 0.95rem;
+    }
+
+    /* Descripción */
+    .descripcion-detalle {
+      padding: 1.5rem;
+      background: var(--color-blanco);
+      border-radius: var(--radio);
+      border: 1px solid var(--color-borde);
+    }
+
+    .descripcion-detalle h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primario);
+      margin-bottom: 0.75rem;
+    }
+
+    .descripcion-detalle p {
+      font-size: 0.93rem;
+      color: var(--color-texto-suave);
+      line-height: 1.8;
+    }
+
+    /* Productos relacionados */
+    .relacionados {
+      padding: 4rem 0 5rem;
+      background: var(--color-blanco);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .producto-detalle-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .galeria { position: static; }
+
+      .beneficios-detalle {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .galeria-miniaturas {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .precio-actual { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Barra anuncio -->
+  <div class="barra-anuncio">
+    <p>🚚 Envíos a toda Colombia &nbsp;|&nbsp; 📞 Atención por WhatsApp &nbsp;|&nbsp; 🔒 Compra 100% segura</p>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header-contenedor">
+      <div class="logo">
+        <a href="index.html">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </a>
+      </div>
+      <nav class="nav-principal" id="navPrincipal">
+        <ul class="nav-lista">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link">Categorías <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+              <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+              <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+              <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+              <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+            </ul>
+          </li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="header-acciones">
+        <div class="buscador-mini" id="buscadorMini">
+          <input type="text" placeholder="Buscar..." id="inputBusqueda" />
+          <button class="btn-buscar" onclick="buscar()"><i class="fas fa-search"></i></button>
+        </div>
+        <button class="btn-icono" id="btnBuscador"><i class="fas fa-search"></i></button>
+        <button class="btn-icono btn-carrito" id="btnCarrito">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="carrito-contador" id="carritoContador">0</span>
+        </button>
+        <button class="btn-hamburguesa" id="btnHamburguesa">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Carrito panel -->
+  <aside class="carrito-panel" id="carritoPanel">
+    <div class="carrito-panel-header">
+      <h3><i class="fas fa-shopping-bag"></i> Mi Carrito</h3>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="carrito-panel-cuerpo" id="carritoCuerpo">
+      <div class="carrito-vacio" id="carritoVacio">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Tu carrito está vacío</p>
+        <a href="catalogo.html" class="btn-primario">Ver productos</a>
+      </div>
+      <ul class="carrito-items" id="carritoItems"></ul>
+    </div>
+    <div class="carrito-panel-footer" id="carritoFooter" style="display:none;">
+      <div class="carrito-total">
+        <span>Total:</span>
+        <strong id="carritoTotal">$0 COP</strong>
+      </div>
+      <button class="btn-whatsapp-carrito" id="btnPedidoWhatsapp">
+        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+      </button>
+      <p class="carrito-nota">* Te contactaremos para coordinar el pago y envío</p>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ========== MIGAS DE PAN ========== -->
+  <nav class="breadcrumb">
+    <div class="contenedor">
+      <ol class="breadcrumb-lista">
+        <li><a href="index.html">Inicio</a></li>
+        <li><i class="fas fa-chevron-right"></i></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+        <li><i class="fas fa-chevron-right"></i></li>
+        <li><span id="breadcrumbNombre">Producto</span></li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ========== DETALLE DEL PRODUCTO ========== -->
+  <section class="producto-detalle">
+    <div class="contenedor">
+      <div class="producto-detalle-grid">
+
+        <!-- Galería -->
+        <div class="galeria">
+          <div class="galeria-principal" id="galeriaPrincipal">
+            <div class="galeria-placeholder" id="galeriaPlaceholder">
+              <i class="fas fa-shoe-prints"></i>
+            </div>
+            <span class="galeria-badge-detalle" id="galeriaBadge" style="display:none;"></span>
+          </div>
+          <div class="galeria-miniaturas" id="galeriaMiniaturas">
+            <!-- Se generan con JS -->
+          </div>
+        </div>
+
+        <!-- Info del producto -->
+        <div class="producto-info-detalle" id="productoInfoDetalle">
+
+          <div class="producto-info-top">
+            <span class="producto-categoria-badge" id="detalleCat">—</span>
+            <h1 class="producto-nombre-detalle" id="detalleNombre">Cargando...</h1>
+            <div class="producto-precio-detalle">
+              <span class="precio-actual" id="detallePrecio">—</span>
+              <span class="precio-tachado" id="detallePrecioOrig" style="display:none;"></span>
+              <span class="precio-descuento" id="detalleDescuento" style="display:none;"></span>
+            </div>
+          </div>
+
+          <!-- Descripción corta -->
+          <div class="descripcion-detalle">
+            <h4>Descripción</h4>
+            <p id="detalleDesc">—</p>
+          </div>
+
+          <!-- Selector de colores -->
+          <div>
+            <p class="selector-titulo">Color: <span id="colorSeleccionado">—</span></p>
+            <div class="colores-detalle" id="detalleColores"></div>
+          </div>
+
+          <!-- Selector de tallas -->
+          <div>
+            <p class="selector-titulo">Talla: <span id="tallaSeleccionada">—</span></p>
+            <div class="tallas-detalle" id="detalleTallas"></div>
+          </div>
+
+          <!-- Cantidad -->
+          <div>
+            <p class="selector-titulo">Cantidad</p>
+            <div class="cantidad-detalle">
+              <button class="btn-cantidad-detalle" onclick="cambiarCantidadDetalle(-1)">−</button>
+              <span id="cantidadProducto">1</span>
+              <button class="btn-cantidad-detalle" onclick="cambiarCantidadDetalle(1)">+</button>
+            </div>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="acciones-detalle">
+            <button class="btn-carrito-detalle" id="btnAgregarDetalle">
+              <i class="fas fa-shopping-bag"></i> Agregar al carrito
+            </button>
+            <a href="#" class="btn-whatsapp-detalle" id="btnWhatsappDetalle" target="_blank">
+              <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+            </a>
+          </div>
+
+          <!-- Beneficios -->
+          <div class="beneficios-detalle">
+            <div class="beneficio-item">
+              <i class="fas fa-truck"></i> Envío a toda Colombia
+            </div>
+            <div class="beneficio-item">
+              <i class="fas fa-shield-alt"></i> Compra 100% segura
+            </div>
+            <div class="beneficio-item">
+              <i class="fas fa-file-invoice"></i> Factura electrónica
+            </div>
+            <div class="beneficio-item">
+              <i class="fab fa-whatsapp"></i> Atención por WhatsApp
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRODUCTOS RELACIONADOS ========== -->
+  <section class="relacionados">
+    <div class="contenedor">
+      <div class="seccion-titulo">
+        <span class="seccion-etiqueta">También te puede gustar</span>
+        <h2>Productos Relacionados</h2>
+      </div>
+      <div class="productos-grid" id="productosRelacionados"></div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="contenedor footer-grid">
+      <div class="footer-marca">
+        <div class="logo footer-logo">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </div>
+        <p>Tu tienda de confianza para calzado de calidad en Colombia.</p>
+        <div class="footer-redes">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+          <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+          <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+          <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+          <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="legal.html#privacidad">Política de Privacidad</a></li>
+          <li><a href="legal.html#terminos">Términos y Condiciones</a></li>
+          <li><a href="legal.html#datos">Tratamiento de Datos</a></li>
+          <li><a href="legal.html#facturacion">Facturación Electrónica</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Calzado Shogun. Todos los derechos reservados.</p>
+      <p>Hecho con <i class="fas fa-heart"></i> en Colombia 🇨🇴</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573000000000" class="whatsapp-flotante" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/filtros.js"></script>
+  <script src="js/animaciones.js"></script>
+
+  <script>
+  /* ========================================
+     LÓGICA DE PÁGINA DE PRODUCTO
+  ======================================== */
+
+  let productoActual = null;
+  let cantidadDetalle = 1;
+  let colorSeleccionado = null;
+  let tallaSeleccionada = null;
+
+  function cambiarCantidadDetalle(delta) {
+    cantidadDetalle = Math.max(1, cantidadDetalle + delta);
+    document.getElementById('cantidadProducto').textContent = cantidadDetalle;
+  }
+
+  function cargarProducto() {
+    const params  = new URLSearchParams(window.location.search);
+    const id      = params.get('id');
+    const producto = obtenerPorId(id);
+
+    if (!producto) {
+      document.getElementById('detalleNombre').textContent = 'Producto no encontrado';
+      return;
+    }
+
+    productoActual = producto;
+
+    // Título de página y breadcrumb
+    document.title = `${producto.nombre} – Calzado Shogun`;
+    document.getElementById('breadcrumbNombre').textContent = producto.nombre;
+
+    // Datos básicos
+    document.getElementById('detalleCat').textContent    = producto.categoria;
+    document.getElementById('detalleNombre').textContent = producto.nombre;
+    document.getElementById('detallePrecio').textContent = formatearPrecio(producto.precio);
+    document.getElementById('detalleDesc').textContent   = producto.descripcion;
+
+    // Precio original y descuento
+    if (producto.precioOriginal) {
+      const descPct = Math.round((1 - producto.precio / producto.precioOriginal) * 100);
+      const origEl  = document.getElementById('detallePrecioOrig');
+      const descEl  = document.getElementById('detalleDescuento');
+      origEl.textContent    = formatearPrecio(producto.precioOriginal);
+      origEl.style.display  = 'inline';
+      descEl.textContent    = `-${descPct}%`;
+      descEl.style.display  = 'inline';
+    }
+
+    // Badge
+    if (producto.badge) {
+      const badgeEl = document.getElementById('galeriaBadge');
+      badgeEl.textContent   = producto.badge;
+      badgeEl.style.display = 'block';
+    }
+
+    // Galería (placeholder x4 miniaturas)
+    const miniaturas = document.getElementById('galeriaMiniaturas');
+    miniaturas.innerHTML = [1,2,3,4].map((_, i) => `
+      <div class="miniatura ${i === 0 ? 'activa' : ''}"
+           onclick="seleccionarMiniatura(this)">
+        <i class="fas fa-shoe-prints"></i>
+      </div>`).join('');
+
+    // Colores
+    colorSeleccionado = producto.colores[0];
+    document.getElementById('colorSeleccionado').textContent = colorSeleccionado;
+    const coloresEl = document.getElementById('detalleColores');
+    coloresEl.innerHTML = producto.colores.map((color, i) => `
+      <div class="color-opcion ${i === 0 ? 'activo' : ''}"
+           style="background:${color}"
+           onclick="elegirColor(this, '${color}')"
+           title="${color}"></div>`).join('');
+
+    // Tallas
+    tallaSeleccionada = producto.tallas[0];
+    document.getElementById('tallaSeleccionada').textContent = tallaSeleccionada;
+    const tallasEl = document.getElementById('detalleTallas');
+    tallasEl.innerHTML = producto.tallas.map((talla, i) => `
+      <button class="talla-opcion ${i === 0 ? 'activo' : ''}"
+              onclick="elegirTalla(this, '${talla}')">${talla}</button>`).join('');
+
+    // Botón agregar al carrito
+    document.getElementById('btnAgregarDetalle').onclick = () => {
+      for (let i = 0; i < cantidadDetalle; i++) {
+        agregarAlCarritoDetalle();
+      }
+    };
+
+    // Botón WhatsApp
+    actualizarWhatsApp();
+
+    // Productos relacionados
+    const relacionados = PRODUCTOS
+      .filter(p => p.categoria === producto.categoria && p.id !== producto.id)
+      .slice(0, 4);
+    renderizarProductos(relacionados, 'productosRelacionados');
+  }
+
+  function elegirColor(el, color) {
+    document.querySelectorAll('.color-opcion').forEach(c => c.classList.remove('activo'));
+    el.classList.add('activo');
+    colorSeleccionado = color;
+    document.getElementById('colorSeleccionado').textContent = color;
+    actualizarWhatsApp();
+  }
+
+  function elegirTalla(el, talla) {
+    document.querySelectorAll('.talla-opcion').forEach(t => t.classList.remove('activo'));
+    el.classList.add('activo');
+    tallaSeleccionada = talla;
+    document.getElementById('tallaSeleccionada').textContent = talla;
+    actualizarWhatsApp();
+  }
+
+  function seleccionarMiniatura(el) {
+    document.querySelectorAll('.miniatura').forEach(m => m.classList.remove('activa'));
+    el.classList.add('activa');
+  }
+
+  function actualizarWhatsApp() {
+    if (!productoActual) return;
+    const msg = encodeURIComponent(
+      `Hola! Me interesa:\n*${productoActual.nombre}*\nTalla: ${tallaSeleccionada}\nColor: ${colorSeleccionado}\nPrecio: ${formatearPrecio(productoActual.precio)}\n¿Tienen disponibilidad?`
+    );
+    document.getElementById('btnWhatsappDetalle').href =
+      `https://wa.me/573000000000?text=${msg}`;
+  }
+
+  function agregarAlCarritoDetalle() {
+    if (!productoActual) return;
+    const clave = `${productoActual.id}-${tallaSeleccionada}-${colorSeleccionado}`;
+    const existente = carrito.find(i => i.clave === clave);
+    if (existente) {
+      existente.cantidad += 1;
+    } else {
+      carrito.push({
+        clave,
+        id:       productoActual.id,
+        nombre:   productoActual.nombre,
+        precio:   productoActual.precio,
+        talla:    tallaSeleccionada,
+        color:    colorSeleccionado,
+        imagen:   productoActual.imagen,
+        cantidad: 1
+      });
+    }
+    guardarCarrito();
+    actualizarContador();
+    renderizarCarrito();
+    mostrarToast(`✓ ${productoActual.nombre} agregado al carrito`);
+    abrirCarrito();
+  }
+
+  document.addEventListener('DOMContentLoaded', cargarProducto);
+  </script>
+
+</body>
+</html>

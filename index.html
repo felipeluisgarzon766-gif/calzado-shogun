@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calzado Shogun – Zapatos de calidad para toda la familia. Envíos a toda Colombia." />
+  <meta name="keywords" content="zapatos Colombia, calzado hombre mujer niño, zapatos deportivos, Calzado Shogun" />
+  <meta name="author" content="Calzado Shogun" />
+
+  <!-- Open Graph (para compartir en redes sociales) -->
+  <meta property="og:title" content="Calzado Shogun – Tu estilo, tu comodidad" />
+  <meta property="og:description" content="Encuentra zapatos para hombre, mujer, niño y más. Calidad garantizada." />
+  <meta property="og:type" content="website" />
+
+  <title>Calzado Shogun – Tu estilo, tu comodidad</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Iconos (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet" href="css/carrito.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+
+  <!-- ========================================
+       BARRA DE ANUNCIO SUPERIOR
+  ======================================== -->
+  <div class="barra-anuncio">
+    <p>🚚 Envíos a toda Colombia &nbsp;|&nbsp; 📞 Atención por WhatsApp &nbsp;|&nbsp; 🔒 Compra 100% segura</p>
+  </div>
+
+  <!-- ========================================
+       HEADER / NAVEGACIÓN
+  ======================================== -->
+  <header class="header" id="header">
+    <div class="header-contenedor">
+
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </a>
+      </div>
+
+      <!-- Navegación principal -->
+      <nav class="nav-principal" id="navPrincipal">
+        <ul class="nav-lista">
+          <li><a href="index.html" class="nav-link activo">Inicio</a></li>
+          <li><a href="catalogo.html" class="nav-link">Catálogo</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link">Categorías <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+              <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+              <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+              <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+              <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+            </ul>
+          </li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones del header -->
+      <div class="header-acciones">
+
+        <!-- Buscador -->
+        <div class="buscador-mini" id="buscadorMini">
+          <input type="text" placeholder="Buscar zapatos..." id="inputBusqueda" />
+          <button class="btn-buscar" onclick="buscar()">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <button class="btn-icono" id="btnBuscador" title="Buscar">
+          <i class="fas fa-search"></i>
+        </button>
+
+        <!-- Carrito -->
+        <button class="btn-icono btn-carrito" id="btnCarrito" title="Ver carrito">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="carrito-contador" id="carritoContador">0</span>
+        </button>
+
+        <!-- Menú hamburguesa (móvil) -->
+        <button class="btn-hamburguesa" id="btnHamburguesa" title="Menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================
+       PANEL DEL CARRITO (lateral)
+  ======================================== -->
+  <aside class="carrito-panel" id="carritoPanel">
+    <div class="carrito-panel-header">
+      <h3><i class="fas fa-shopping-bag"></i> Mi Carrito</h3>
+      <button class="btn-cerrar-carrito" id="btnCerrarCarrito">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="carrito-panel-cuerpo" id="carritoCuerpo">
+      <div class="carrito-vacio" id="carritoVacio">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Tu carrito está vacío</p>
+        <a href="catalogo.html" class="btn-primario">Ver productos</a>
+      </div>
+      <ul class="carrito-items" id="carritoItems"></ul>
+    </div>
+    <div class="carrito-panel-footer" id="carritoFooter" style="display:none;">
+      <div class="carrito-total">
+        <span>Total:</span>
+        <strong id="carritoTotal">$0 COP</strong>
+      </div>
+      <button class="btn-whatsapp-carrito" id="btnPedidoWhatsapp">
+        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+      </button>
+      <p class="carrito-nota">* Te contactaremos para coordinar el pago y envío</p>
+    </div>
+  </aside>
+
+  <!-- Overlay del carrito -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ========================================
+       SECCIÓN HERO / BANNER PRINCIPAL
+  ======================================== -->
+  <section class="hero" id="inicio">
+    <div class="hero-contenido">
+      <span class="hero-etiqueta">Nueva Colección 2025</span>
+      <h1 class="hero-titulo">
+        Tu estilo,<br />
+        <span class="hero-titulo-acento">tu comodidad</span>
+      </h1>
+      <p class="hero-descripcion">
+        Zapatos de calidad para cada momento de tu vida.<br />
+        Diseño, durabilidad y elegancia en cada paso.
+      </p>
+      <div class="hero-botones">
+        <a href="catalogo.html" class="btn-primario btn-grande">
+          Explorar Catálogo <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#categorias" class="btn-secundario btn-grande">
+          Ver Categorías
+        </a>
+      </div>
+    </div>
+    <div class="hero-imagen">
+      <!-- Placeholder: reemplaza con imagen real -->
+      <div class="hero-imagen-placeholder">
+        <i class="fas fa-shoe-prints"></i>
+        <span>Tu imagen aquí</span>
+      </div>
+    </div>
+    <!-- Indicador scroll -->
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-linea"></div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SECCIÓN CATEGORÍAS
+  ======================================== -->
+  <section class="categorias" id="categorias">
+    <div class="contenedor">
+      <div class="seccion-titulo">
+        <span class="seccion-etiqueta">Explora</span>
+        <h2>Nuestras Categorías</h2>
+        <p>Encuentra el calzado perfecto para cada ocasión</p>
+      </div>
+      <div class="categorias-grid">
+
+        <a href="catalogo.html?categoria=hombre" class="categoria-card">
+          <div class="categoria-imagen cat-hombre">
+            <i class="fas fa-male"></i>
+          </div>
+          <div class="categoria-info">
+            <h3>Hombre</h3>
+            <span>Ver colección →</span>
+          </div>
+        </a>
+
+        <a href="catalogo.html?categoria=mujer" class="categoria-card">
+          <div class="categoria-imagen cat-mujer">
+            <i class="fas fa-female"></i>
+          </div>
+          <div class="categoria-info">
+            <h3>Mujer</h3>
+            <span>Ver colección →</span>
+          </div>
+        </a>
+
+        <a href="catalogo.html?categoria=unisex" class="categoria-card">
+          <div class="categoria-imagen cat-unisex">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="categoria-info">
+            <h3>Unisex</h3>
+            <span>Ver colección →</span>
+          </div>
+        </a>
+
+        <a href="catalogo.html?categoria=nino" class="categoria-card">
+          <div class="categoria-imagen cat-nino">
+            <i class="fas fa-child"></i>
+          </div>
+          <div class="categoria-info">
+            <h3>Niño</h3>
+            <span>Ver colección →</span>
+          </div>
+        </a>
+
+        <a href="catalogo.html?categoria=deportivo" class="categoria-card">
+          <div class="categoria-imagen cat-deportivo">
+            <i class="fas fa-running"></i>
+          </div>
+          <div class="categoria-info">
+            <h3>Deportivo</h3>
+            <span>Ver colección →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PRODUCTOS DESTACADOS
+  ======================================== -->
+  <section class="productos-destacados" id="destacados">
+    <div class="contenedor">
+      <div class="seccion-titulo">
+        <span class="seccion-etiqueta">Lo más popular</span>
+        <h2>Productos Destacados</h2>
+        <p>Los favoritos de nuestros clientes</p>
+      </div>
+      <!-- Los productos se cargan dinámicamente con JavaScript -->
+      <div class="productos-grid" id="productosDestacados"></div>
+      <div class="texto-centro" style="margin-top: 2rem;">
+        <a href="catalogo.html" class="btn-primario">Ver todos los productos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SECCIÓN MÉTODOS DE PAGO
+  ======================================== -->
+  <section class="pagos" id="pagos">
+    <div class="contenedor">
+      <div class="seccion-titulo">
+        <span class="seccion-etiqueta">Fácil y seguro</span>
+        <h2>Métodos de Pago</h2>
+        <p>Elige cómo prefieres pagar tu pedido</p>
+      </div>
+      <div class="pagos-grid">
+
+        <div class="pago-card">
+          <div class="pago-icono pago-nequi">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Nequi</h3>
+          <p>Transfiere fácil desde tu celular al instante</p>
+        </div>
+
+        <div class="pago-card">
+          <div class="pago-icono pago-bancolombia">
+            <i class="fas fa-university"></i>
+          </div>
+          <h3>Bancolombia</h3>
+          <p>Transferencia bancaria o pago en sucursal</p>
+        </div>
+
+        <div class="pago-card">
+          <div class="pago-icono pago-paypal">
+            <i class="fab fa-paypal"></i>
+          </div>
+          <h3>PayPal</h3>
+          <p>Pago internacional seguro con tarjeta</p>
+        </div>
+
+        <div class="pago-card">
+          <div class="pago-icono pago-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3>WhatsApp</h3>
+          <p>Coordina tu pedido y pago directamente</p>
+        </div>
+
+      </div>
+      <p class="pagos-nota">
+        <i class="fas fa-shield-alt"></i>
+        Todas las transacciones son seguras. Emitimos factura electrónica según normativa DIAN Colombia.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================
+       BANNER INTERMEDIO / CTA
+  ======================================== -->
+  <section class="banner-cta">
+    <div class="contenedor">
+      <div class="banner-cta-contenido">
+        <h2>¿Listo para encontrar tu par perfecto?</h2>
+        <p>Más de 50 modelos disponibles. Envíos a toda Colombia.</p>
+        <a href="catalogo.html" class="btn-primario btn-grande">
+          Ver Catálogo Completo <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SECCIÓN NOSOTROS (resumen)
+  ======================================== -->
+  <section class="nosotros-resumen" id="nosotros">
+    <div class="contenedor nosotros-grid">
+      <div class="nosotros-imagen">
+        <div class="nosotros-imagen-placeholder">
+          <i class="fas fa-store"></i>
+          <span>Foto del negocio</span>
+        </div>
+      </div>
+      <div class="nosotros-texto">
+        <span class="seccion-etiqueta">Nuestra historia</span>
+        <h2>Somos Calzado Shogun</h2>
+        <p>
+          Nacimos del amor por el buen calzado y el deseo de ofrecer a las familias colombianas
+          zapatos de calidad, durabilidad y estilo, a precios justos.
+        </p>
+        <p>
+          Cada par que ofrecemos ha sido seleccionado con cuidado, pensando en tu comodidad
+          y en la satisfacción de quienes confían en nosotros.
+        </p>
+        <ul class="nosotros-valores">
+          <li><i class="fas fa-check-circle"></i> Calidad garantizada</li>
+          <li><i class="fas fa-check-circle"></i> Atención personalizada</li>
+          <li><i class="fas fa-check-circle"></i> Envíos seguros a Colombia</li>
+          <li><i class="fas fa-check-circle"></i> Factura electrónica incluida</li>
+        </ul>
+        <a href="nosotros.html" class="btn-secundario">Conoce más sobre nosotros</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SECCIÓN CONTACTO
+  ======================================== -->
+  <section class="contacto" id="contacto">
+    <div class="contenedor">
+      <div class="seccion-titulo">
+        <span class="seccion-etiqueta">Estamos para ti</span>
+        <h2>Contáctanos</h2>
+        <p>Responderemos lo más pronto posible</p>
+      </div>
+      <div class="contacto-grid">
+
+        <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20información%20sobre%20sus%20productos"
+           target="_blank" class="contacto-card contacto-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <h3>WhatsApp</h3>
+          <p>+57 300 000 0000</p>
+          <span>Chatear ahora →</span>
+        </a>
+
+        <a href="mailto:contacto@calzadoshogun.com" class="contacto-card contacto-email">
+          <i class="fas fa-envelope"></i>
+          <h3>Correo</h3>
+          <p>contacto@calzadoshogun.com</p>
+          <span>Escribirnos →</span>
+        </a>
+
+        <div class="contacto-card contacto-ubicacion">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Ubicación</h3>
+          <p>Colombia</p>
+          <span>📍 Reemplaza con tu ciudad</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       REDES SOCIALES
+  ======================================== -->
+  <section class="redes-sociales">
+    <div class="contenedor">
+      <h3>Síguenos en redes</h3>
+      <p>Inspírate con nuestros nuevos modelos cada semana</p>
+      <div class="redes-botones">
+        <a href="#" target="_blank" class="red-btn red-instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="#" target="_blank" class="red-btn red-facebook">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </a>
+        <a href="https://wa.me/573000000000" target="_blank" class="red-btn red-whatsapp">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+  <footer class="footer">
+    <div class="contenedor footer-grid">
+
+      <div class="footer-marca">
+        <div class="logo footer-logo">
+          <span class="logo-texto">SHOGUN</span>
+          <span class="logo-sub">CALZADO</span>
+        </div>
+        <p>Tu tienda de confianza para calzado de calidad en Colombia.</p>
+        <div class="footer-redes">
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="catalogo.html?categoria=hombre">Hombre</a></li>
+          <li><a href="catalogo.html?categoria=mujer">Mujer</a></li>
+          <li><a href="catalogo.html?categoria=unisex">Unisex</a></li>
+          <li><a href="catalogo.html?categoria=nino">Niño</a></li>
+          <li><a href="catalogo.html?categoria=deportivo">Deportivo</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="legal.html#privacidad">Política de Privacidad</a></li>
+          <li><a href="legal.html#terminos">Términos y Condiciones</a></li>
+          <li><a href="legal.html#datos">Tratamiento de Datos</a></li>
+          <li><a href="legal.html#facturacion">Facturación Electrónica</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Calzado Shogun. Todos los derechos reservados.</p>
+      <p>Hecho con <i class="fas fa-heart"></i> en Colombia 🇨🇴</p>
+    </div>
+  </footer>
+
+  <!-- ========================================
+       BOTÓN FLOTANTE WHATSAPP
+  ======================================== -->
+  <a href="https://wa.me/573000000000?text=Hola%2C%20me%20interesa%20un%20producto"
+     class="whatsapp-flotante" target="_blank" title="Chatea con nosotros">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ========================================
+       SCRIPTS
+  ======================================== -->
+  <script src="js/productos.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/filtros.js"></script>
+  <script src="js/animaciones.js"></script>
+
+</body>
+</html>
