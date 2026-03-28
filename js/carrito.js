@@ -312,6 +312,7 @@ function cerrarMenu() {
 }
 
 // Función búsqueda global
+
 function buscar() {
   const input = document.getElementById('inputBusqueda');
   if (!input) return;
