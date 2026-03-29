@@ -204,7 +204,7 @@ function enviarPedidoWhatsApp() {
   mensaje += `💰 *Total: ${formatearPrecio(total)}*\n\n`;
   mensaje += `Por favor confirmar disponibilidad y datos de envío. ¡Gracias!`;
 
-  const url = `https://wa.me/573000000000?text=${encodeURIComponent(mensaje)}`;
+  const url = `https://wa.me/+57 315 4300377?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 }
 
