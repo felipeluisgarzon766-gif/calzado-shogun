@@ -156,7 +156,6 @@ function inicializarCatalogo() {
     });
   }
 
-  
   aplicarFiltros();
 }
 
