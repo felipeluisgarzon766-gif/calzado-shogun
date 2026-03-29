@@ -199,7 +199,7 @@ function generarTarjetaProducto(producto) {
                   onclick="agregarAlCarrito(${producto.id})">
             <i class="fas fa-shopping-bag"></i> Agregar al carrito
           </button>
-          <a href="https://wa.me/573000000000?text=${msgWA}"
+          <a href="https://wa.me/+57 315 4300377?text=${msgWA}"
              target="_blank"
              class="btn-whatsapp-producto">
             <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
