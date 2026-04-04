@@ -261,6 +261,13 @@ function generarRespuesta(mensaje) {
 
 function pickRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
+// Sanitizar texto del usuario para evitar inyección de HTML/XSS
+function sanitizarHTML(texto) {
+  const div = document.createElement('div');
+  div.textContent = texto;
+  return div.innerHTML;
+}
+
 function responderCategoria(cat, titulo) {
   const prods = PRODUCTOS.filter(p => p.categoria === cat);
   if (prods.length === 0) return `No tenemos productos en esa categoría por ahora. ¿Te gustaría ver otras opciones?`;
@@ -560,9 +567,10 @@ function agregarMensajeIA(texto) {
 
 function agregarMensajeUsuario(texto) {
   const mensajes = document.getElementById('iaMensajes');
+  const textoSeguro = sanitizarHTML(texto);
   mensajes.insertAdjacentHTML('beforeend', `
     <div class="mensaje mensaje-usuario">
-      <div class="mensaje-burbuja">${texto}</div>
+      <div class="mensaje-burbuja">${textoSeguro}</div>
     </div>
   `);
   scrollAlFinal();

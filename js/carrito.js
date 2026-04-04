@@ -219,7 +219,7 @@ function mostrarToast(mensaje) {
 
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = `<i class="fas fa-check-circle"></i> ${mensaje}`;
+  toast.textContent = mensaje;
   document.body.appendChild(toast);
 
   setTimeout(() => {
